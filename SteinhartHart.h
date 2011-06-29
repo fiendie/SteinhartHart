@@ -50,6 +50,8 @@ class SteinhartHart
 		double getTempFahrenheit();
 		
 	private:
+		double steinhartHart(double);
+		
 		// Value of the resistor put in parallel
 		double _resistance;	
 
