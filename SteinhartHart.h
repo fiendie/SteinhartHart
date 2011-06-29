@@ -22,20 +22,27 @@
 #include <inttypes.h>
 
 #define V_IN 5.0	// Input voltage
-#define K 9.5		// mW dec C - dissipation factor
+#define K 9.5		// Dissipation factor (mW/°C)
 
 
 class SteinhartHart 
 {
 	public:
+		
+		/**
+		 * The reading pin has to be specified.
+		 * If no other parameters are given default values will be used.
+		 * These values are for a NTC 10k thermistor with a 10k resistor
+		 * put in parallel.
+		 */
 		SteinhartHart(
 			uint8_t reading_pin, 
-			double ntc_resistance = 10000.0, 
+			double resistance = 10000.0, 
 			double a = 1.129148e-3, 
 			double b = 2.34125e-4, 
 			double c = 8.76741e-8) : 
 			_reading_pin(reading_pin), 
-			_ntc_resistance(ntc_resistance), 
+			_resistance(resistance), 
 			_a(a), _b(b), _c(c) {};
 
 		double getTempKelvin();
@@ -43,8 +50,12 @@ class SteinhartHart
 		double getTempFahrenheit();
 		
 	private:
-		double _ntc_resistance;
+		// Value of the resistor put in parallel
+		double _resistance;	
+
 		uint8_t _reading_pin;
+
+		// Manufacturing constants
 		double _a;
 		double _b;
 		double _c;

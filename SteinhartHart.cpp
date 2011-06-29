@@ -21,13 +21,17 @@
 #include "SteinhartHart.h"
 #include <math.h>
 	
-
+	
+/**
+ * Returns the temperature in kelvin for the given resistance value
+ * using the Steinhart-Hart polynom.
+ */
 double SteinhartHart::steinhartHart(double r)
 {
-	double logR  = log(r);
-	double logR3 = logR * logR * logR;
+	double log_r  = log(r);
+	double log_r3 = log_r * log_r * log_r;
 
-	return 1.0 / (_a + _b * logR + _c * logR3);
+	return 1.0 / (_a + _b * log_r + _c * log_r3);
 }
 
 
@@ -35,9 +39,10 @@ double SteinhartHart::getTempKelvin()
 {
 	double adc_raw = analogRead(_reading_pin);
 	double voltage = adc_raw / 1024 * V_IN;
-	double resistance = ((1024 * _ntc_resistance / adc_raw) - _ntc_resistance);
-
-	return steinhartHart(resistance) - voltage * voltage / (K * _ntc_resistance);
+	double resistance = ((1024 * _resistance / adc_raw) - _resistance);
+	
+	// Account for dissipation factor K
+	return steinhartHart(resistance) - voltage * voltage / (K * _resistance);
 }
 
 
