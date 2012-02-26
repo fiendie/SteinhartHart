@@ -16,11 +16,10 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <inttypes.h>
-#include "WProgram.h"
+#include "Arduino.h"
 #include "SteinhartHart.h"
-#include <math.h>
-	
+#include <inttypes.h>
+#include <math.h>	
 	
 /**
  * Returns the temperature in kelvin for the given resistance value
