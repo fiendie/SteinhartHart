@@ -16,6 +16,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#if ARDUINO >= 100
+	#include "Arduino.h"
+#else
+	#include "WProgram.h"
+#endif
+
+
 #ifndef SteinhartHart_h
 #define SteinhartHart_h
 
