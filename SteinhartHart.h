@@ -32,10 +32,8 @@
 #define K 9.5		// Dissipation factor (mW/°C)
 
 
-class SteinhartHart 
-{
-	public:
-		
+class SteinhartHart {
+	public:	
 		/**
 		 * The reading pin has to be specified.
 		 * If no other parameters are given default values will be used.
